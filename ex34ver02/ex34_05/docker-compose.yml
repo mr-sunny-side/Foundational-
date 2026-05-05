@@ -7,7 +7,7 @@ services:
       - "8000:8000" # ホスト:コンテナのポートマッピング
     env_file:
       - .env  # .envファイルから環境変数を読み込み
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload # マウントしたコードの変更を即反映
     environment:  # 読み込んだ環境変数を展開
       DATABASE_URL: ${DATABASE_URL} # databaseのurlを指定
     depends_on:
