@@ -9,10 +9,10 @@
 	 - .env.example作成											- 完了
 
 	 - dockerfile, docker-composeの作成	 - 完了
-	 - alembicの設定を修正				 - ここから
+	 - alembicの設定を修正				 - 完了
 	 - alembic versionファイルを作成	 - コンテナのテスト時に作成
-	 - conftest.pyの作成				 -
-	 - test_main.pyの作成				 -
+	 - conftest.pyの作成				 - 完了
+	 - test_main.pyの作成				 - ここから
 	 - dockerignoreの追加				 -
 	 - アプリのテスト					 -
 
@@ -237,6 +237,7 @@ async def handle_all_items(
 	db_items = session.exec(select(ItemDB)).all()
 	return db_items
 
+# ユーザーアイテムの削除(ID指定)
 @app.delete("/items/{id}", status_code=204)
 async def handle_delete_items(
 	id: Annotated[int, Path(ge=1)],
