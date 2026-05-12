@@ -27,5 +27,3 @@ Thumbs.db
 *.tmp
 
 _mbox/*
-
-node_modules/
