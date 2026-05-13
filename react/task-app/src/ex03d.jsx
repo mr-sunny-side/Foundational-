@@ -7,8 +7,8 @@
 import { useState } from "react";
 
 function Ex03d() {
-    const [Input, setInput] = useState("")  // 入力フォームの文字表示
-    const [Tasks, setTask] = useState([])   // タスクを保存する配列
+    const [Input, setInput] = useState("");  // 入力フォームの文字表示
+    const [Tasks, setTask] = useState([]);   // タスクを保存する配列
 
     return (
         <div>
@@ -20,8 +20,9 @@ function Ex03d() {
             <button onClick={() => setInput("")}>クリア</button>
             <button onClick={() => {
                 // 複数のスクリプトを書くときは、{}でまとめる
+                if (Input.trim() === "") return // 空文字はパス
                 const newTask = {id: Date.now(), text: Input}
-                setTask([...task, newTask])
+                setTask([...Tasks, newTask])
                 setInput("")
             }}>追加</button>
             <ul>
