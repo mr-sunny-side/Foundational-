@@ -1,7 +1,7 @@
-import Ex03c from "./ex03c"
+import Ex03d from "./ex03d"
 
 function App() {
-  return <Ex03c />
+  return <Ex03d />
 }
 
 export default App
