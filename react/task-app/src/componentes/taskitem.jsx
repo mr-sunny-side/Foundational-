@@ -1,5 +1,5 @@
 function TaskItem({task}) {
-    return <li>{task.text}</li>;
+    return <li key={task.id}>{task.text}</li>;
 }
 
 export default TaskItem
