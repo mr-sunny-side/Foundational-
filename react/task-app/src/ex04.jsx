@@ -15,20 +15,21 @@ function Ex04() {
     };
 
     // タスクの削除は、指定のタスクを削除した新しい配列を作ることで実現
-    const handleDelete = () => {
+    const handleDelete = (id) => {
         setTask(Tasks.filter(
-            list_task => list_task.id !== task.id
+            task => task.id !== id
         ))
     }
 
     // リストに追加されているタスクを表示する関数
+    // jsxの結果はreturnする必要がある
     const handleList = () => {
-        Tasks.map(task =>
+        return (Tasks.map(task =>
             <li key={task.id}>
                 {task.text}
-                <button onClick={handleDelete}>削除</button>
+                <button onClick={() => handleDelete(task.id)}>削除</button>
             </li>
-        );
+        ));
     };
 
     return (
@@ -41,7 +42,8 @@ function Ex04() {
             <button onClick={() => setInput("")}>クリア</button>
             <button onClick={handleAdd}>追加</button>
             <ul>
-                {handleList}
+                {/*JSXの中でレンダリング時に実行してほしいので()をつける */}
+                {handleList()}
             </ul>
         </div>
     )
