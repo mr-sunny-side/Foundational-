@@ -10,7 +10,7 @@ function Ex05() {
     // 追加ボタンを押したときのロジック
     const handleAdd = () => {
         if (Input.trim() === "") return;
-        const newTask = {id: Date.now(), text: Input};
+        const newTask = {id: Date.now(), text: Input, complete: false};
         setTask([...Tasks, newTask]);
         setInput("");
     };
@@ -23,12 +23,28 @@ function Ex05() {
         ))
     };
 
-    //　追加されたタスクをリスト表示するロジック
+    // 完了ボタンを押したときのロジック
+    // mapは配列を返す。
+    // オブジェクトは{}で囲う
+    const handleToggle = (id) => {
+        setTask(Tasks.map(task =>
+            task.id === id  // ここでどのタスクか指定
+            ? {...Tasks, complete: !task.complete}  // 指定のタスクを完了に変更
+            : task  // IDが一致しないタスクはそのまま配列に追加
+        ));
+    };
+
+
+    // 追加されたタスクをリスト表示するロジック
+    // 三項演算子で取り消し線を制御
     const handleList = () => {
         return (Tasks.map(task => 
             <li key={task.id}>
-                {task.text}
+                <span style={{textDecoration: task.complete ? "line-through" : "none"}}>
+                    {task.text}
+                </span>
                 <button onClick={() => handleDelete(task.id)}>削除</button>
+                <button onClick={() => handleToggle(task.id)}>完了</button>
             </li>
         ))
     };
