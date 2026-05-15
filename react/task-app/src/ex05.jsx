@@ -29,7 +29,7 @@ function Ex05() {
     const handleToggle = (id) => {
         setTask(Tasks.map(task =>
             task.id === id  // ここでどのタスクか指定
-            ? {...Tasks, complete: !task.complete}  // 指定のタスクを完了に変更
+            ? {...task, complete: !task.complete}  // 指定のタスクの完了だけ変更
             : task  // IDが一致しないタスクはそのまま配列に追加
         ));
     };
