@@ -1,8 +1,11 @@
 // 05-16
 // 入力フォーム         完了
 // クリア・追加ボタン   完了
-// リスト               削除ボタンの記述から
-// 完了・削除ボタン     
+// リスト               完了
+// 完了・削除ボタン     完了
+
+// コンポーネントの分割
+// TaskItemでボタンの作成から
 
 import { useState } from "react";
 
@@ -13,9 +16,9 @@ function Ex06() {
     // 追加ボタンのロジック
     const handleAdd = () => {
         if (Input.trim() === "") return;
-        const newTask = {id: Date.now(), text: Input, complite: false}
-        setTask([...Tasks, newTask])
-        setInput("")
+        const newTask = {id: Date.now(), text: Input, complite: false};
+        setTask([...Tasks, newTask]);
+        setInput("");
     }
 
     // 完了ボタンのロジック
@@ -26,8 +29,15 @@ function Ex06() {
             //taskの要素をコピー、compliteを反転
             //この記述はオブジェクトなので{}で囲う
             : task
-        )
-    }
+        );
+    };
+
+    // 削除ボタンのロジック
+    const handleDelete = (id) => {
+        Tasks.filter(task =>
+            task.id !== id
+        );
+    };
 
     // リスト構造のロジック
     const handleList = () => {
@@ -38,7 +48,7 @@ function Ex06() {
                         {task.text}
                     </span>
                     <button onClick={() => handleToggle(task.id)}>完了</button>
-                    <button>削除</button>
+                    <button onClick={() => handleDelete(task.id)}>削除</button>
                 </li>
             )
         )
@@ -54,7 +64,7 @@ function Ex06() {
             <button onClick={() => setInput("")}>クリア</button>
             <button onClick={handleAdd}>追加</button>
             <ul>
-
+                {handleList}
             </ul>
         </div>
     )
