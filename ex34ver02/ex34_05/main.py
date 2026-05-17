@@ -13,7 +13,7 @@
 	 - alembic versionファイルを作成	 - コンテナのテスト時に作成
 	 - conftest.pyの作成				 - 完了
 	 - test_main.pyの作成				 - ここから
-	 - dockerignoreの追加				 -
+	 - dockerignoreの追加				 - 完了
 	 - アプリのテスト					 -
 
 
