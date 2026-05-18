@@ -3,9 +3,9 @@
 // クリア・追加ボタン   完了
 // リスト               完了
 // 完了・削除ボタン     完了
-
 // コンポーネントの分割
-// TaskItemでボタンの作成から
+
+// ex06.md：バク2の修正から
 
 import { useState } from "react";
 import TaskForm from "./TaskForm";

@@ -4,13 +4,13 @@ import { DeleteButton, CompButton } from "./TaskItem";
 
 function TaskList({Tasks, setTask}) {
     return (
-        Task.map(
-            <li key={Task.id}>
+        Tasks.map(task =>
+            <li key={task.id}>
                 <span style={{textDecoration: Task.complete ? "line-through" : "none"}}>
-                    {Task.text}
+                    {task.text}
                 </span>
-                <CompButton Tasks={Tasks} setTask={setTask}/>
-                <DeleteButton Tasks={Tasks} setTask={setTask} />
+                <CompButton Tasks={Tasks} setTask={setTask} id={task.id}/>
+                <DeleteButton Tasks={Tasks} setTask={setTask} id={task.id}/>
             </li>
         )
     );
