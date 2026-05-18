@@ -6,7 +6,7 @@ function TaskList({Tasks, setTask}) {
     return (
         Tasks.map(task =>
             <li key={task.id}>
-                <span style={{textDecoration: Task.complete ? "line-through" : "none"}}>
+                <span style={{textDecoration: task.complete ? "line-through" : "none"}}>
                     {task.text}
                 </span>
                 <CompButton Tasks={Tasks} setTask={setTask} id={task.id}/>

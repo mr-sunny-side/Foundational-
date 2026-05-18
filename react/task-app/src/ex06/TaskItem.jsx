@@ -4,26 +4,36 @@ import { useState } from "react";
 
 // 削除ボタンのロジック
 function DeleteButton({Tasks, setTask, id}) {
-    Tasks.filter(task =>
-        task.id !== id
-    );
-};
+    const handleDelete = () => {
+        setTask(Tasks.filter(task => task.id !== id));
+    };
+
+    return <button onClick={handleDelete}>削除</button>;
+}
 
 // 完了ボタンのロジック
 function CompButton({Tasks, setTask, id}) {
-    Tasks.map(task =>
-        task.id === id  // idと一致するものが条件
-        ? {...task, complete: !task.complete}   // 真の場合、完了判定を判定
-        : task  // 対象タスク以外はそのままリストに追加
-    );
-};
+    const handleComp = () => {
+        setTask(Tasks.map(task =>
+            task.id === id
+            ? {...task, complete: !task.complete}
+            : task
+        ));
+    }
+
+    return <button onClick={handleComp}>完了</button>
+}
 
 // 追加ボタンのロジック
 function AddButton({Tasks, setTask, Input, setInput}) {
-    if (Input.trim() === "") return;
-    const newTask = {id: Date.now(), text: Input, complete: false};
-    setTask(...Tasks, newTask);
-    setInput("");
+    const handleAdd = () => {
+        if (Input.trim() === "") return;
+        const newTask = {id: Date.now(), text: Input, complete: false};
+        setTask([...Tasks, newTask]);
+        setInput("");
+    }
+
+    return <button onClick={handleAdd}>追加</button>
 }
 
 export {DeleteButton, CompButton, AddButton}
