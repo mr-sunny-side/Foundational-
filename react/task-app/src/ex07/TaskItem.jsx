@@ -35,4 +35,14 @@ function CompButton({tasks, set_task, id}) {
     return <button onClick={handleComp}>完了</button>;
 }
 
-export {AddButton, DeleteButton, CompButton};
+function FilterButton({filter, set_filter}) {
+    return (
+        <div>
+            <button onClick={() => set_filter("all")}>全て</button>
+            <button onClick={() => set_filter("active")}>未完了</button>
+            <button onClick={() => set_filter("complete")}>完了</button>
+        </div>
+    )
+}
+
+export {AddButton, DeleteButton, CompButton, FilterButton};
