@@ -3,7 +3,7 @@ function AddButton({tasks, set_task, input, set_input}) {
     const handleAdd = () => {
         if (input.trim() === "") return;
         const new_task = {id: Date.now(), text: input, complete: false};
-        set_task(...tasks, new_task);
+        set_task([...tasks, new_task]);
         set_input("");
     };
 
@@ -14,7 +14,7 @@ function AddButton({tasks, set_task, input, set_input}) {
 // idと一致しないもので配列を作り直す
 function DeleteButton({tasks, set_task, id}) {
     const handleDelete = () => {
-        set_task(tasks.map(
+        set_task(tasks.filter(
             task => task.id !== id
         ));
     };

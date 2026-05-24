@@ -10,20 +10,22 @@ function Ex08() {
     const [Input, setInput] = useState("")
     const [Filter, setFilter] = useState("all")
 
-    let filteredTask;
+    // フィルタリングロジック
+    // 指定のものをfilterメソッドで取り出す
+    let filteredTasks;
     if (Filter === "active") {
-        filteredTask = Tasks.map(task => !task.complete)
+        filteredTasks = Tasks.filter(task => !task.complete)
     } else if (Filter === "complete") {
-        filteredTask = Tasks.map(task => task.complete)
+        filteredTasks = Tasks.filter(task => task.complete)
     } else {
-        filteredTask = Tasks
+        filteredTasks = Tasks
     }
 
     return (
         <div>
             <TaskForm tasks={Tasks} set_task={setTask} input={Input} set_input={setInput}/>
             <FilterButton filter={Filter} set_filter={setFilter}/>
-            <TaskList filtered_task={filteredTask} set_filter={setFilter}/>
+            <TaskList filtered_tasks={filteredTasks} set_task={setTask}/>
         </div>
     );
 }
