@@ -26,7 +26,7 @@ function Ex08() {
         <div>
             <TaskForm tasks={Tasks} set_task={setTask} input={Input} set_input={setInput}/>
             <FilterButton filter={Filter} set_filter={setFilter}/>
-            <TaskList filtered_tasks={filteredTasks} set_task={setTask}/>
+            <TaskList filtered_tasks={filteredTasks} tasks={Tasks} set_task={setTask}/>
         </div>
     );
 }
