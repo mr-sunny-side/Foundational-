@@ -1,5 +1,6 @@
 // 05-22
-// ex07の復習から
+// エラー修正から
+
 import { useState } from "react";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";

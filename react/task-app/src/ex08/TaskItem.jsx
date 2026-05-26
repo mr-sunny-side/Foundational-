@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // 追加ボタンのロジック
 function AddButton({tasks, set_task, input, set_input}) {
     const handleAdd = () => {
@@ -46,4 +48,49 @@ function FilterButton({filter, set_filter}) {
     )
 }
 
-export {AddButton, DeleteButton, CompButton, FilterButton}
+function TaskItem({task, tasks, set_task}) {
+    const [IsEditing, setIsEditing] = useState(false);   // 編集状態かを示す変数
+    const [editText, setEditText] = useState(task.text); // 編集する際の文字列を管理する変数
+
+    // 編集時、保存ボタンを押したときのロジック
+    const handleSave = () => {
+        if (editText.trim() === "") return;
+        set_task(tasks.map(t =>
+            t.id === task.id ? {...t, text: editText} : t   // タスク配列の指定アイテムを書き換え
+        ));
+        setIsEditing(false);
+    };
+
+    // 編集キャンセルボタンを押したときのロジック
+    const handleCancel = () => {
+        setEditText(task.text);
+        setIsEditing(false);
+    };
+
+    return (
+        <li key={task.id}>
+            {IsEditing ? (
+                <>
+                    <input
+                        type="text"
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                    />
+                    <button onClick={handleSave}>保存</button>
+                    <button onClick={handleCancel}>キャンセル</button>
+                </>
+            ) : (
+                <>
+                    <span style={{textDecoration: task.complete ? "line-through" : "none"}}>
+                        {task.text}
+                    </span>
+                    <button onClick={() => setIsEditing(true)}>編集</button>
+                    <CompButton tasks={tasks} set_task={set_task} id={task.id}/>
+                    <DeleteButton tasks={tasks} set_task={set_task} id={task.id}/>
+                </>
+            )}
+        </li>
+    )
+}
+
+export {AddButton, DeleteButton, CompButton, FilterButton, TaskItem}
