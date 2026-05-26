@@ -1,7 +1,7 @@
-import Ex08 from "./ex08/ex08";
+import Ex09 from "./ex09/ex09"
 
 function App() {
-    return <Ex08 />
+    return <Ex09 />
 }
 
 export default App
