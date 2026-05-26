@@ -1,4 +1,5 @@
 // 追加・削除・完了・フィルターボタンの作成
+import { useState } from "react";
 
 //formの追加ボタンのロジック
 function AddButton({tasks, set_task, input, set_input}) {
@@ -47,6 +48,53 @@ function FilterButton({filter, set_filter}) {
             <button onClick={() => set_filter("active")}>未完了</button>
             <button onClick={() => set_filter("complete")}>完了</button>
         </>
+    )
+}
+
+function TaskItem({task, tasks, set_task}){
+    const [IsEditing, setIsEditing] = useState(false);
+    const [EditText, setEditText] = useState(task.text);
+
+    // 編集時、保存ボタンを押したときのロジック
+    // 現在のタスクを指定して、EditTextをtextに反映
+    const handleSave = () => {
+        if (EditText.trim() === "") return;
+        set_task(tasks.map(t =>
+            t.id === task.id ? {...t, text: EditText} : t   // 指定のタスクのテキストを変更
+        ));
+        setIsEditing(false);
+    };
+
+    // 編集キャンセルボタンを押したときのロジック
+    // 単純に初期状態に戻す
+    const handleCancel = () => {
+        setEditText(task.text);
+        setIsEditing(false);
+    };
+
+    return (
+        <li key={task.id}>
+            {IsEditing ? (
+                <>
+                    <input
+                        type="text"
+                        value={EditText}
+                        onChange={(e) => setEditText(e.target.value)}
+                    />
+                    <button onClick={handleSave}>保存</button>
+                    <button onClick={handleCancel}>キャンセル</button>
+                </>
+            ) : (
+                <>
+                    <span style={{textDecoration: task.complete ? "line-through" : "none"}}>
+                        {task.text}
+                    </span>
+                    <button onClick={() => setIsEditing(true)}>編集</button>
+                    <DeleteButton tasks={tasks} set_task={set_task} id={task.id}/>
+                    <CompButton tasks={tasks} set_task={set_task} id={task.id}/>
+                </>
+            )}
+        </li>
     )
 }
 
