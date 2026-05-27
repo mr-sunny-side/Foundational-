@@ -1,5 +1,7 @@
 // 05-26
-// 編集機能の追加から
+// apiファイルの作成から
+// とりあえずAPIファイルだけ作ればいい
+
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 import { FilterButton } from "./TaskItem";
