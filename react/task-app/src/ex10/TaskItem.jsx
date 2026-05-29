@@ -47,11 +47,51 @@ function FilterButton({filter, set_filter}) {
 
 // リスト内のロジック
 //
-function TaskItem({task, tasks, set_tasks}) {
+function TaskItem({task, tasks, set_task}) {
     const [IsEditing, setIsEditing] = useState(false);
-    const [EditText, setEditText] = useState
+    const [EditText, setEditText] = useState(task.text)
+
+    // 編集保存ボタンのロジック
+    const handleSave = () => {
+        if (EditText.trim() === "") return;
+        set_task(tasks.map(t =>
+            t.id === task.id
+            ? {...t, text: EditText}
+            : t
+        ));
+        setEditText(task.text)
+        setIsEditing(false)
+    }
+
+    // 編集キャンセルボタンのロジック
+    const handleCancel = () => {
+        setEditText(task.text)
+        setIsEditing(false)
+    }
 
     return (
-        {}
-    )
+        <li key={task.id}>
+            {IsEditing ? (
+                <>
+                    <input
+                        type="text"
+                        value={EditText}
+                        onChange={(e) => setEditText(e.target.value)}
+                    />
+                    <button onClick={handleCancel}>キャンセル</button>
+                    <button onClick={handleSave}>保存</button>
+                </>
+            ) : (
+                <>
+                    <span style={{textDecoration: task.complete ? "line-through" : "none"}}>
+                        {task.text}
+                    </span>
+                    <DeleteButton tasks={tasks} set_task={set_task} id={task.id}/>
+                    <CompButton tasks={tasks} set_task={set_task} id={task.id}/>
+                </>
+            )}
+        </li>
+    );
 }
+
+export {AddButton, DeleteButton, CompButton, FilterButton, TaskItem}
