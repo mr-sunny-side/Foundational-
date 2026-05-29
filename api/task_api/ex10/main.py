@@ -3,18 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-app.add_middleware( # ミドルウェア(reqとresの間の処理)を追加
-    CORSMiddleware,  # CORSのミドルウェアを追加
-    allow_origins=["http://localhost:5173"],    # リクエストを許可するオリジン
-    allow_methods=["*"],                        # 全てのメソッドを許可
-    allow_headers=["*"],                        # 全てのヘッダーを許可
+app.add_middleware(         # ミドルウェアを追加
+    CORSMiddleware,         # CORSのミドルウェアを設定
+    allow_originals=["http://localhost:5173"],  # 接続を許可するオリジンを設定
+    allow_methods=["*"],    # メソッドを全て許可
+    allow_headers=["*"],    # ヘッダーを全て許可
 )
 
-tasks = [
-    {"id": 1, "text": "牛乳を買う", "complete": False},
-    {"id": 2, "text": "コードを書く", "complete": False}
-]
-
-@app.get("/tasks")
-def get_tasks():
-    return tasks
+# タスク追加のロジック作成から
