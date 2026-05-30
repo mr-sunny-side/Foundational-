@@ -13,3 +13,5 @@ function TaskForm({tasks, set_task, input, set_input}) {
         </div>
     );
 }
+
+export default TaskForm;
