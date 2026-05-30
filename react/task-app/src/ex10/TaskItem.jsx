@@ -1,14 +1,24 @@
 // 追加・削除・完了・フィルタ・リスト
 import { useState } from "react";
 
+const API_URL = "http://localhost:8000"
+
 //formの追加ボタンのロジック
+//awaitを使うことで処理が終わるまで待ち、順次実行する(fetchは元々非同期なので)
 function AddButton({tasks, set_task, input, set_input}) {
-    const handleAdd = () => {
+    const handleAdd = async () => {
         if (input.trim() === "") return;
-        const new_task = {id: Date.now(), text: input, complete: false};
-        set_task([...tasks, new_task]);
-        set_input("");
+
+        const res = await fetch(`${API_URL}/tasks`, {   //リクエストの送信
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({text: input}) // bodyとしてtaskをjsonに変換
+        });
+        const new_task = await res.json()
+        set_task([...tasks, new_task])
+        set_input("")
     };
+
 
     return <button onClick={handleAdd}>追加</button>
 }

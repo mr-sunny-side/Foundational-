@@ -11,12 +11,6 @@ function Ex10() {
     const [Input, setInput] = useState("");
     const [Filter, setFilter] = useState("all")
 
-    useEffect(() => {
-        fetch("http://localhost:8000/tasks")   //fastAPIからリスト情報を取得
-            .then(res => res.json())        //取得したリスト情報をjsonに変換
-            .then(data => setTask(data))    //取得データをリストに追加
-    }, [])                                  //第二引数で初期表示のときだけ実行
-
     // 進捗度でフィルタ済みのタスク
     let FilteredTasks;
     if (Filter === "active") {
