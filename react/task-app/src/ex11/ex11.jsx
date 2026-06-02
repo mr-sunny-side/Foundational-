@@ -1,6 +1,7 @@
 // 05-30
-// ex11の記述
-// - fastAPIからタスクの初期値(get)を受け取る記述
+// ex10の復習から - ex11.jsx以外の記述は完了
+//
+
 import { useState } from "react";
 
 import { FilterButton } from "./TaskItem";
