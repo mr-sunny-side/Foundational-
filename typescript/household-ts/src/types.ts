@@ -7,3 +7,9 @@ export interface Transaction {
     label: string;
     date: string;
 }
+
+export interface Summary {
+    incomeSum: number;
+    expenseSum: number;
+    totalSum: number;
+}
