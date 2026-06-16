@@ -34,4 +34,4 @@ function main() {
     console.log(copyCell);
 }
 
-main();
+main()
