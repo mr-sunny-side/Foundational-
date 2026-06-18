@@ -27,6 +27,8 @@ function create_grid(rows, cols) {
         }
         r++;
     }
+
+    return grid;
 }
 
 // グリッドを一次元配列にする関数
