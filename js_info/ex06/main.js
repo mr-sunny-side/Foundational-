@@ -3,8 +3,8 @@
 // getNbor関数
 // を実装し、ex06を開始
 
-// 06-17
-// place_mine関数の作成から
+// 06-18
+// 完了
 
 // セルを作成する関数
 function create_cell(row, col) {
@@ -55,7 +55,7 @@ function open_cell(grid) {
 // 地雷以外のセルが開放済みならtrueを返す関数
 function is_cleared(grid) {
     const flat_grid = all_cells(grid);  // グリッドを一次元にする
-    const not_mine = flat_grid.filter(c => !is_mine);   // 地雷以外のセルをフィルタ
+    const not_mine = flat_grid.filter(c => !c.is_mine);   // 地雷以外のセルをフィルタ
 
     return not_mine.every(c => c.state === "open");
 }
@@ -67,7 +67,7 @@ function place_mines(grid, mine_count) {
     // 独立した新しいオブジェクトを作成するために、セルまでコピーする
 
     const rows = new_grid.length;
-    const cols = new_grid.length;
+    const cols = new_grid[0].length;
 
     let mines_placed = 0;
 
@@ -83,7 +83,7 @@ function place_mines(grid, mine_count) {
 
         // オブジェクトの変更の際は、安全性の観点から直接変更しない
         new_grid[row][col] = {...new_grid[row][col], is_mine: true};
-        mine_count++;
+        mines_placed++;
     }
 
     return new_grid;
@@ -95,10 +95,9 @@ function main() {
     console.log(grid);
 
     const placed_grid = place_mines(grid, mine_count);
-    const placed_mines = count_mine(place_mines);
+    const placed_mines = count_mine(placed_grid);
 
-
-    console.log(place_mines);
+    console.log(placed_mines);
 }
 
 main()
