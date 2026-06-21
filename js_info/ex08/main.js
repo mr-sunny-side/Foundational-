@@ -55,7 +55,7 @@ function main() {
 
     // セルを全てopenにする
     const newGrid = transformGrid(
-        grid, (cell) => {cell.state = "open"}
+        grid, (cell) => {return {...cell, state: "open"}}
     );
     console.log(newGrid);
 
@@ -63,9 +63,9 @@ function main() {
     const newGrid2 = transformGrid(
         grid,
         (cell) => {
-            if ((cell.row + cell.col) % 2 === 0) {
-                cell.isMine = true;
-            }
+            (cell.row + cell.col) % 2 === 0
+            ? {...cell, isMine: true}
+            : cell
         }
     );
     console.log(newGrid2);
