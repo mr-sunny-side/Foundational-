@@ -79,3 +79,32 @@ function place_mine(grid, mine_num) {
 
     return new_grid;
 }
+
+function createTimer() {
+    let start_time = 0;
+
+    return {
+        // 初期時刻を設定する
+        start_or_reset() {
+            start_time = Date.now();
+            console.log(`start_time: ${Math.floor(start_time / 1000)}`);
+        },
+        // 現在経過時刻を取得する
+        get_second() {
+            const time_now = Date.now();
+            const elapse = Math.floor((time_now - start_time) / 1000);
+            console.log(`stop time: ${elapse}`);
+            return elapse;
+        },
+    };
+}
+
+function create_mine_counter(total_mine) {
+    let remaining = total_mine;
+
+    return {
+        place_flag() {remaining++;},
+        remove_flag() {remaining--;},
+        get_remaining() {return remaining;}
+    };
+}
