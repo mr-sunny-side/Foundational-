@@ -18,7 +18,7 @@ function create_grid(rows, cols) {
         grid.push([]);
         let c = 0;
 
-        while (c < col) {
+        while (c < cols) {
             const cell = create_cell(r, c);
             grid[r].push(cell)
             c++;
@@ -103,8 +103,8 @@ function create_mine_counter(total_mine) {
     let remaining = total_mine;
 
     return {
-        place_flag() {remaining++;},
-        remove_flag() {remaining--;},
+        place_flag() {remaining--;},
+        remove_flag() {remaining++;},
         get_remaining() {return remaining;}
     };
 }
