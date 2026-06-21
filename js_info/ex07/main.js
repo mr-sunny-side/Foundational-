@@ -80,7 +80,7 @@ function place_mine(grid, mine_num) {
     return new_grid;
 }
 
-function createTimer() {
+function create_timer() {
     let start_time = 0;
 
     return {
