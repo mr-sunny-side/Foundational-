@@ -1,9 +1,9 @@
 function sleep(ms) {
     const p = new Promise((resolve) => {
-        setTimeout(() => {
-            return resolve("完了");
-        }, ms);
+        setTimeout(() => {return resolve("完了"); }, ms);
     });
+
+    return p;
 }
 
 async function showGameOver() {
@@ -21,3 +21,12 @@ async function openCellWithDelay(cells) {
         await sleep(100);
     }
 }
+
+function main() {
+    const p = sleep(1000);
+    console.log(p);
+
+    showGameOver();
+}
+
+main()
