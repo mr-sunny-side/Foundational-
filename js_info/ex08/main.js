@@ -60,13 +60,13 @@ function main() {
     console.log(newGrid);
 
     // row + colが偶数のセルを地雷に変換
+    // アロー関数は省略できる
     const newGrid2 = transformGrid(
         grid,
-        (cell) => {
+        (cell) =>
             (cell.row + cell.col) % 2 === 0
             ? {...cell, isMine: true}
             : cell
-        }
     );
     console.log(newGrid2);
 
