@@ -6,4 +6,4 @@ function main() {
     console.log(placedGrid);
 }
 
-main();
+main()
