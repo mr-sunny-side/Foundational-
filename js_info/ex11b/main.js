@@ -1,4 +1,4 @@
-import * as logic from "./logic"
+import * as logic from "./logic.js"
 
 const grid = logic.createGrid(9, 9);
 // jsオブジェクトとしてグリッドを作成
